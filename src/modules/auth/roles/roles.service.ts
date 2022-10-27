@@ -1,5 +1,5 @@
 import { UpdateRoleDTO } from './dto/roles.dto';
-import { ICreateRole, IRole, IUserRole, ICreateUserRole } from './interface/roles.interface';
+import { ICreateRole, IRole, IUserRole, ICreateUserRole, ICreatRoleModule, IRoleModule } from './interface/roles.interface';
 import { isEmpty } from 'class-validator'; 
 import RolesDao from './dao/roles.dao'; 
 import ErrorResponse from '../modules/../../shared/utils/errorResponse';
@@ -37,6 +37,13 @@ export default class RolesService {
         const user_role: IUserRole = await this.rolesDao.createUserRole({user_id, role_id });
 
         return user_role
+    }
+
+    async createRoleModule({ module_id, role_id }: ICreatRoleModule) {  
+        
+        const role_module: IRoleModule = await this.rolesDao.createRoleModule({module_id, role_id });
+
+        return role_module
     }
 
     async getUserRoleModules(user_id: string) {

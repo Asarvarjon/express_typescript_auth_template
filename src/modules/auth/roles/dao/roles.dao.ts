@@ -1,4 +1,4 @@
-import { ICreateUserRole } from './../interface/roles.interface';
+import { ICreateUserRole, ICreatRoleModule } from './../interface/roles.interface';
 import { ICreateRole } from '../interface/roles.interface';
 import KnexService from '../../../../database/connection'; 
 import { getFirst } from '../../../shared/utils/utils';
@@ -34,6 +34,17 @@ export default class RolesDao {
             })
         )
     } 
+
+    async createRoleModule({ module_id, role_id }: ICreatRoleModule) {
+        return getFirst(
+            await KnexService('role_modules')
+            .insert({
+                module_id,
+                role_id
+            })
+            .returning('*')
+        )
+    }
 
     async createUserRole({ user_id, role_id }: ICreateUserRole) {
         return getFirst(

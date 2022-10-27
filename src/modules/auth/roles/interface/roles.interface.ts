@@ -22,3 +22,14 @@ export interface IUserRole {
     role_id: string;
     user_id: string;
 }
+
+export interface IRoleModule {
+    id: string;
+    role_id: string;
+    module_id: string;
+}
+
+export interface ICreatRoleModule { 
+    role_id: string;
+    module_id: string;
+}

@@ -1,5 +1,6 @@
+import { ICreatRoleModule } from './../interface/roles.interface';
 import { ICreateRole } from '../interface/roles.interface';
-import { IsDefined, IsNotEmpty, IsString, MaxLength } from 'class-validator'; 
+import { IsDefined, IsNotEmpty, IsString, IsUUID, MaxLength } from 'class-validator'; 
 
 export class CreateRoleDTO implements ICreateRole {
     @IsDefined()
@@ -24,4 +25,18 @@ export class UpdateRoleDTO implements ICreateRole {
     @IsString()
     @MaxLength(64)
     description: string;
+}
+
+export class CreateRoleModuleDTO implements ICreatRoleModule {
+    @IsString()
+    @IsDefined()
+    @IsUUID()
+    @IsNotEmpty()
+    role_id: string; 
+
+    @IsString()
+    @IsDefined()
+    @IsUUID()
+    @IsNotEmpty()
+    module_id: string;
 }
